@@ -4,8 +4,6 @@ import java.util.Vector;
 
 public class Group extends GraphicsObject {
 
-    private Group group;
-
    public Group() {
         //m_groupList = new  Vector<Group>();
         m_objectList = new Vector<GraphicsObject>();
@@ -21,7 +19,7 @@ public class Group extends GraphicsObject {
         int endIndex = str.lastIndexOf("}");
 
         parseObjects(str.substring(objectsIndex + 9, groupsIndex - 2));
-        //parseGroups(str.substring(groupsIndex + 8, endIndex - 1));
+        parseObjects(str.substring(groupsIndex + 8, endIndex - 1));
     }
 
     public void add(Object object) {
@@ -191,19 +189,23 @@ public class Group extends GraphicsObject {
 
         for (int i = 0; i < m_objectList.size(); ++i) {
             GraphicsObject element = m_objectList.elementAt(i);
-
-            str += element.toString();
-            if (i < m_objectList.size() - 1) {
-                str += ", ";
+            if (!(element instanceof Group)) {
+                if (!str.equals("group[[")) {
+                    str += ", ";
+                }
+                str += element.toString();
             }
         }
-        /*str += "],[";
+        str += "],[";
 
-        for (int i = 0; i < m_groupList.size(); ++i) {
-            Group element = m_groupList.elementAt(i);
+        for (int i = 0; i < m_objectList.size(); i++) {
+             GraphicsObject element = m_objectList.elementAt(i);
+            if (element instanceof Group){
 
-            str += element.toString();
-        }*/
+                str += element.toString();
+            }
+        }
+
         return str + "]]";
     }
 
