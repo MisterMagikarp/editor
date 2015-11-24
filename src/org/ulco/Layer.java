@@ -3,6 +3,8 @@ package org.ulco;
 import java.util.Vector;
 
 public class Layer {
+
+
     public Layer() {
         m_list = new Vector<GraphicsObject>();
         m_ID = ++ID.ID;
@@ -25,8 +27,16 @@ public class Layer {
         return m_list.elementAt(index);
     }
 
-    public int getObjectNumber() {
-        return m_list.size();
+    public int getObjectNumber()
+    {
+        int size = 0;
+        for(Object o : m_list){
+            if(o instanceof Group) {
+                size += ((Group) o).size();
+            }
+            else size ++;
+        }
+        return size;
     }
 
     public int getID() {
