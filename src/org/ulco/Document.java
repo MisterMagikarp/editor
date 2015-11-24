@@ -103,14 +103,14 @@ public class Document {
         }
     }
 
-    public GraphicsObjects select(Point pt, double distance) {
+    /*public GraphicsObjects select(Point pt, double distance) {
         GraphicsObjects list = new GraphicsObjects();
 
         for (Layer layer : m_layers) {
             list.addAll(layer.select(pt, distance));
         }
         return list;
-    }
+    }*/
 
     public String toJson() {
         String str = "{ type: document, layers: { ";
@@ -126,5 +126,10 @@ public class Document {
         return str + " } }";
     }
 
-    private Vector<Layer> m_layers;
+    public Vector<Layer> getLayer() {
+        return m_layers;
+    }
+
+        private Vector<Layer> m_layers;
+
 }
