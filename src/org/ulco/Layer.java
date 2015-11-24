@@ -7,7 +7,7 @@ public class Layer {
 
     public Layer() {
         m_list = new Vector<GraphicsObject>();
-        m_ID = ++ID.ID;
+        m_ID = ID.getINSTANCE().getID();
     }
 
     public Layer(String json) {
@@ -33,11 +33,11 @@ public class Layer {
         for(Object o : m_list){
             if(o instanceof Group) {
                 size += ((Group) o).size();
-            }
-            else size ++;
-        }
-        return size;
-    }
+                    }
+                    else size ++;
+                }
+                return size;
+               }
 
     public int getID() {
         return m_ID;
