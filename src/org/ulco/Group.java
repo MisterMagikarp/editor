@@ -20,8 +20,8 @@ public class Group extends GraphicsObject {
         int groupsIndex = str.indexOf("groups");
         int endIndex = str.lastIndexOf("}");
 
-        parseObjects(str.substring(objectsIndex + 9, groupsIndex - 2));
-        parseObjects(str.substring(groupsIndex + 8, endIndex - 1));
+        Select.parseObjects(str.substring(objectsIndex + 9, groupsIndex - 2), m_objectList);
+        Select.parseObjects(str.substring(groupsIndex + 8, endIndex - 1), m_objectList);
     }
 
     public void add(Object object) {
@@ -106,24 +106,7 @@ public class Group extends GraphicsObject {
         }
     }*/
 
-    private void parseObjects(String objectsStr) {
-        while (!objectsStr.isEmpty()) {
-            int separatorIndex = SearchSeparator.searchSeparator(objectsStr);
-            String objectStr;
 
-            if (separatorIndex == -1) {
-                objectStr = objectsStr;
-            } else {
-                objectStr = objectsStr.substring(0, separatorIndex);
-            }
-            m_objectList.add(JSON.parse(objectStr));
-            if (separatorIndex == -1) {
-                objectsStr = "";
-            } else {
-                objectsStr = objectsStr.substring(separatorIndex + 1);
-            }
-        }
-    }
 
     public int size() {
         int size = 0;
