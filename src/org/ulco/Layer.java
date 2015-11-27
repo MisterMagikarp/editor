@@ -122,7 +122,7 @@ public class Layer {
                 }
             }
         }
-        
+
         str += groupstr;
         return str + " } }";
     }
