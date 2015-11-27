@@ -41,7 +41,7 @@ public class Document {
 
     private void parseLayers(String layersStr) {
         while (!layersStr.isEmpty()) {
-            int separatorIndex = searchSeparator(layersStr);
+            int separatorIndex = SearchSeparator.searchSeparator(layersStr);
             String layerStr;
 
             if (separatorIndex == -1) {
@@ -58,30 +58,7 @@ public class Document {
         }
     }
 
-    private int searchSeparator(String str) {
-        int index = 0;
-        int level = 0;
-        boolean found = false;
 
-        while (!found && index < str.length()) {
-            if (str.charAt(index) == '{') {
-                ++level;
-                ++index;
-            } else if (str.charAt(index) == '}') {
-                --level;
-                ++index;
-            } else if (str.charAt(index) == ',' && level == 0) {
-                found = true;
-            } else {
-                ++index;
-            }
-        }
-        if (found) {
-            return index;
-        } else {
-            return -1;
-        }
-    }
 
     /*public GraphicsObjects select(Point pt, double distance) {
         GraphicsObjects list = new GraphicsObjects();
